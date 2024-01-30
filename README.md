@@ -1,0 +1,2 @@
+# rails-store
+practicando rails
