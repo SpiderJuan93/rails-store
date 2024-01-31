@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
     private
 
     def product_params #capturo la request.
-        params.require(:product).permit(:title, :description, :price) #recoge de los parámetros un objeto de tipo product
+        params.require(:product).permit(:title, :description, :price, :photo) #recoge de los parámetros un objeto de tipo product
     end
 
 end

@@ -11,6 +11,11 @@
         <%= form.label :price %>
         <%= form.number_field :price %>
     </div>
+    <div>
+        <%= form.label :photo %>
+        <%= form.file_field :photo %>
+    </div>
+
     <%= form.submit %>
     <ul>
         <% @product.errors.full_messages.each do |error| %>
