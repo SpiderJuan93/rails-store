@@ -12,7 +12,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'render a detailed product page' do
-    get product_path(products(:ps4)) #va a testear el producto PS4
+    get product_path(products(:ps4)) #va a testear el producto PS4 procedente de las fixtures
 
     assert_response :success #respuesta satisfactoria.
     assert_select '.title', 'PS4 Fat'
@@ -50,5 +50,36 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :unprocessable_entity
   end
+
+  test 'render an edit product form' do
+    get edit_product_path(products(:ps4)) #obtengo el producto PS4 de las fixtures
+
+    assert_response :success #devuelve 200
+    assert_select 'form' #etiqueta HTML form
+  end
+
+  test 'allow to update a product' do
+    patch product_path(products(:ps4)), params: {
+      product: {
+        title: 'Playstation 4',
+        description: 'Le faltan los cables',
+        price: 200
+      }
+    }
+
+    assert_redirected_to products_path
+    assert_equal flash[:notice], 'Tu producto se ha actualizado'
+  end
+
+  test 'does not allow to update a product' do
+    patch product_path(products(:ps4)), params: {
+      product: {
+        price: nil
+      }
+    }
+    assert_response :unprocessable_entity
+  end
+
+
 
 end

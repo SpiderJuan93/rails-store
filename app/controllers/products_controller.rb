@@ -23,6 +23,20 @@ class ProductsController < ApplicationController
 
     end
 
+    def edit
+        @product = Product.find(params[:id]) #Lee el parametro desde la URL
+    end
+
+    def update
+        @product = Product.find(params[:id]) #Lee el parametro desde la URL
+
+        if @product.update(product_params)
+            redirect_to products_path, notice: 'Tu producto se ha actualizado'
+        else
+            render :edit, status: :unprocessable_entity
+        end
+    end
+
     private
 
     def product_params #capturo la request.
