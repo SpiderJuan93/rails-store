@@ -14,5 +14,10 @@
         <%= form.number_field :price %>
     </div>
     <%= form.submit %>
+    <ul>
+        <% @product.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
 <% end %>
 

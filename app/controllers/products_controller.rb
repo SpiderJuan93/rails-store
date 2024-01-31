@@ -16,9 +16,9 @@ class ProductsController < ApplicationController
         @product = Product.new(product_params) #Con product_params capturamos la request
 
         if @product.save
-            redirect_to products_path
+            redirect_to products_path #redirigimos al index products
         else
-            render :new
+            render :new, status: :unprocessable_entity #Para devolver el status 422 y que muestre al usuario los valores de validación del modelo.
         end
 
     end
