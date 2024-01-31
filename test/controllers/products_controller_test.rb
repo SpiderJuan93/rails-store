@@ -4,4 +4,19 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
+  test 'render a list of products' do
+    get products_path #Petición a la ruta
+
+    assert_response :success #busca que la respuesta sea exito
+    assert_select '.product', 2 #buscamos selectores que sean clases .product y contenga 2 (hemos creado 2 productos en las fixtures)
+  end
+
+  test 'render a detailed product page' do
+    get product_path(products(:ps4)) #va a testear el producto PS4
+
+    assert_response :success #respuesta satisfactoria.
+    assert_select '.title', 'PS4 Fat'
+    assert_select '.description', 'PS4 en buen estado'
+    assert_select '.price', '150'
+  end
 end
