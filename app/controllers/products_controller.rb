@@ -1,7 +1,6 @@
 class ProductsController < ApplicationController
     def index
-        @products = Product.all 
-        p @products
+        @products = Product.all.with_attached_photo
     end
     
     def show
