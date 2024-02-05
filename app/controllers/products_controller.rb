@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     end
     
     def show
-        @product = Product.find(params[:id])
+        product
     end
 
     def new
@@ -24,13 +24,11 @@ class ProductsController < ApplicationController
     end
 
     def edit
-        @product = Product.find(params[:id]) #Lee el parametro desde la URL
+        product
     end
 
     def update
-        @product = Product.find(params[:id]) #Lee el parametro desde la URL
-
-        if @product.update(product_params)
+        if product.update(product_params)
             redirect_to products_path, notice: 'Tu producto se ha actualizado'
         else
             render :edit, status: :unprocessable_entity
@@ -38,8 +36,7 @@ class ProductsController < ApplicationController
     end
 
     def destroy
-        @product = Product.find(params[:id])
-        @product.destroy
+        product.destroy
         redirect_to products_path, notice: 'Producto borrado correctamente', status: :see_other
     end
 
@@ -49,4 +46,7 @@ class ProductsController < ApplicationController
         params.require(:product).permit(:title, :description, :price, :photo) #recoge de los parámetros un objeto de tipo product
     end
 
+    def product
+        @product = Product.find(params[:id])
+    end
 end
