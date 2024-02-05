@@ -20,6 +20,7 @@ es:
               blank: 'no puede estar vacío'
   common:
     confirm: '¿Estás seguro?'
+    back: 'Atrás'
   products:
     edit:
       title: 'Edición de producto'
@@ -33,4 +34,13 @@ es:
       updated: 'Producto actualizado correctamente'
     destroy:
       deleted: 'Prodcuto borrado correctamente'
+  categories:
+    index:
+      title: 'Categorías'
+      new: 'Añadir categoría'
+    edit:
+      title: 'Editar categoría'
+    new:
+      title: 'Nueva categoría'
+
 
