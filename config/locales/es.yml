@@ -33,7 +33,7 @@ es:
     update:
       updated: 'Producto actualizado correctamente'
     destroy:
-      deleted: 'Prodcuto borrado correctamente'
+      deleted: 'Producto borrado correctamente'
   categories:
     index:
       title: 'Categorías'

@@ -1,13 +1,16 @@
+# application_controller.rb
+
 class ApplicationController < ActionController::Base
-    around_action :switch_locale
-
-    def switch_locale(&action)
-        I18n.with_locale(locale_from_header, &action)
+    before_action :switch_locale
+  
+    def switch_locale
+      I18n.locale = locale_from_header || I18n.default_locale
     end
-
-    private
-
+  
     def locale_from_header
-        request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first
+      accept_language = request.env['HTTP_ACCEPT_LANGUAGE']
+      return nil if accept_language.nil? # Agrega esta línea para manejar el caso en que 'accept_language' sea nil
+      accept_language.scan(/^[a-z]{2}/).first
     end
-end
+  end
+  

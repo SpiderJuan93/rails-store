@@ -8,7 +8,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     get products_path #Petición a la ruta
 
     assert_response :success #busca que la respuesta sea exito
-    assert_select '.product', 2 #buscamos selectores que sean clases .product y contenga 2 (hemos creado 2 productos en las fixtures)
+    assert_select '.product', 3 #buscamos selectores que sean clases .product y contenga 2 (hemos creado 2 productos en las fixtures)
   end
 
   test 'render a detailed product page' do
@@ -31,12 +31,13 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
       product: {
         title: 'Nintendo 64',
         description: 'Le faltan los cables',
-        price: 45
+        price: 45,
+        category_id: categories(:videogames).id
       }
     }
 
     assert_redirected_to products_path
-    assert_equal flash[:notice], 'Producto creado correctamente'
+    assert_equal flash[:notice], 'Producto creado'
   end
 
   test 'does not allow to create a new product with empty fields' do
@@ -68,7 +69,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
     }
 
     assert_redirected_to products_path
-    assert_equal flash[:notice], 'Tu producto se ha actualizado'
+    assert_equal flash[:notice], 'Producto actualizado correctamente'
   end
 
   test 'does not allow to update a product' do
