@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :products, path: '/' #equivale a todas las rutas relacionadas con el CRUD comenznado desde root
   # Defines the root path route ("/")
   # root "posts#index"
+  namespace :authentication, path: '', as: '' do
+      resources :users, only: [:new, :create]
+  end
 end
